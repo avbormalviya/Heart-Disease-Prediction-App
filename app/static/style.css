@@ -1,0 +1,164 @@
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f7f4f9;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+.container {
+    background-color: white;
+    padding: 30px 40px;
+    border-radius: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 450px;
+    max-width: 90%;
+}
+
+h1 {
+    text-align: center;
+    color: #d81b60;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+label {
+    font-weight: 600;
+    display: block;
+    margin-top: 15px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.desc {
+    font-size: 12px;
+    color: #888;
+    margin-top: -5px;
+    margin-bottom: 8px;
+}
+
+.heart-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+.form-section {
+    padding-bottom: 8px;
+}
+.form-section:last-child {
+    border-bottom: none;
+}
+.radio-group {
+    display: flex;
+    gap: 18px;
+    margin-bottom: 8px;
+}
+.radio-group label {
+    font-weight: 400;
+    cursor: pointer;
+    padding: 4px 10px;
+    border-radius: 8px;
+    transition: background 0.2s;
+}
+.radio-group input[type="radio"]:focus + label,
+.radio-group label:hover {
+    background: #f7e6f9;
+}
+.tooltip {
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+    margin-left: 4px;
+    color: #888;
+    border-bottom: none;
+}
+.tooltip:hover .tooltiptext, .tooltip:focus .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+}
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 270px;
+    background-color: #fff;
+    color: #333;
+    text-align: left;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+    padding: 14px 18px;
+    position: absolute;
+    left: 120%;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    font-size: 17px;
+    font-weight: 500;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+}
+.tooltip:focus {
+    outline: none;
+}
+input[type="number"], select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 15px;
+    transition: border 0.2s;
+}
+input[type="number"]:focus, select:focus {
+    border: 1.5px solid #d81b60;
+    outline: none;
+}
+.submit-btn {
+    background-color: #d81b60;
+    color: white;
+    font-weight: bold;
+    padding: 14px;
+    border: none;
+    border-radius: 15px;
+    width: 100%;
+    font-size: 18px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.submit-btn:hover, .submit-btn:focus {
+    background-color: #b3134a;
+}
+#spinner {
+    font-size: 20px;
+}
+.result {
+    background: #fbe9f2;
+    color: #b3134a;
+    border: 2px solid #d81b60;
+    border-radius: 12px;
+    padding: 16px 18px;
+    margin-bottom: 18px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}
+.result-green {
+    background: #e6f9ed;
+    color: #1b7e3c;
+    border: 2px solid #1b7e3c;
+}
+.result-red {
+    background: #ffeaea;
+    color: #b3134a;
+    border: 2px solid #d81b60;
+}

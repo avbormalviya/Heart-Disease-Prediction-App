@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>💗 Heart Disease Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Heart Disease Prediction 🩺</h1>
+        <p class="subtitle">Please fill out the form below carefully 🌸</p>
+
+        {% if prediction_text %}
+            <div class="result {{ result_class }}"><strong>Result:</strong> {{ prediction_text }}</div>
+        {% endif %}
+
+        <form action="/predict" method="post" class="heart-form">
+            <div class="form-section">
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" placeholder="e.g., 45" required aria-label="Age" title="Enter your age in years">
+            </div>
+            <div class="form-section">
+                <label>Sex</label>
+                <div class="radio-group" role="radiogroup" aria-label="Sex">
+                    <label><input type="radio" name="sex" value="0" required> Female</label>
+                    <label><input type="radio" name="sex" value="1"> Male</label>
+                </div>
+            </div>
+            <div class="form-section">
+                <label for="cp">Chest Pain Type <span class="tooltip" tabindex="0">&#9432;<span class="tooltiptext">Describes the type of chest pain experienced. Typical angina is related to heart issues, while atypical or non-anginal pain may have other causes. Asymptomatic means no chest pain.</span></span></label>
+                <select id="cp" name="cp" aria-label="Chest Pain Type">
+                    <option value="0">Typical Angina</option>
+                    <option value="1">Atypical Angina</option>
+                    <option value="2">Non-Anginal Pain</option>
+                    <option value="3">Asymptomatic</option>
+                </select>
+            </div>
+            <div class="form-section">
+                <label for="trestbps">Resting Blood Pressure <span class="tooltip" tabindex="0">&#9432;<span class="tooltiptext">Your blood pressure (in mm Hg) when at rest. High values may indicate hypertension, a risk factor for heart disease.</span></span></label>
+                <input type="number" id="trestbps" name="trestbps" placeholder="e.g., 120" required aria-label="Resting Blood Pressure" title="Resting blood pressure in mm Hg">
+            </div>
+            <div class="form-section">
+                <label for="chol">Serum Cholesterol <span class="tooltip" tabindex="0">&#9432;<span class="tooltiptext">Total cholesterol in your blood (mg/dl). High cholesterol can increase the risk of heart disease.</span></span></label>
+                <input type="number" id="chol" name="chol" placeholder="e.g., 220" required aria-label="Serum Cholesterol" title="Serum cholesterol in mg/dl">
+            </div>
+            <div class="form-section">
+                <label>Fasting Blood Sugar > 120 mg/dl <span class="tooltip" tabindex="0">&#9432;<span class="tooltiptext">Indicates if your fasting blood sugar is above 120 mg/dl. High fasting blood sugar may be a sign of diabetes or prediabetes, which are risk factors for heart disease.</span></span></label>
+                <div class="radio-group" role="radiogroup" aria-label="Fasting Blood Sugar">
+                    <label><input type="radio" name="fbs" value="0" required> No</label>
+                    <label><input type="radio" name="fbs" value="1"> Yes</label>
+                </div>
+            </div>
+            <div class="form-section">
+                <label for="restecg">Resting ECG Result <span class="tooltip" tabindex="0">&#9432;<span class="tooltiptext">Results of your resting electrocardiogram. Abnormalities may indicate heart problems such as arrhythmia or hypertrophy.</span></span></label>
+                <select id="restecg" name="restecg" aria-label="Resting ECG Result">
+                    <option value="0">Normal</option>
+                    <option value="1">ST-T Abnormality</option>
+                    <option value="2">LV Hypertrophy</option>
+                </select>
+            </div>
+            <div class="form-section">
+                <label for="thalach">Max Heart Rate Achieved <span class="tooltip" tabindex="0">&#9432;<span class="tooltiptext">The highest heart rate reached during exercise. Lower values may indicate heart problems.</span></span></label>
+                <input type="number" id="thalach" name="thalach" placeholder="e.g., 150" required aria-label="Max Heart Rate Achieved" title="Maximum heart rate achieved">
+            </div>
+            <div class="form-section">
+                <label>Exercise Induced Angina <span class="tooltip" tabindex="0">&#9432;<span class="tooltiptext">Indicates if you experienced chest pain during exercise. This can be a sign of reduced blood flow to the heart.</span></span></label>
+                <div class="radio-group" role="radiogroup" aria-label="Exercise Induced Angina">
+                    <label><input type="radio" name="exang" value="0" required> No</label>
+                    <label><input type="radio" name="exang" value="1"> Yes</label>
+                </div>
+            </div>
+            <div class="form-section">
+                <label for="oldpeak">ST Depression <span class="tooltip" tabindex="0">&#9432;<span class="tooltiptext">Amount of depression in the ST segment on an ECG after exercise. Higher values may indicate more severe heart disease.</span></span></label>
+                <input type="number" step="any" id="oldpeak" name="oldpeak" placeholder="e.g., 1.4" required aria-label="ST Depression" title="ST depression induced by exercise relative to rest">
+            </div>
+            <div class="form-section">
+                <label for="slope">Slope of ST Segment <span class="tooltip" tabindex="0">&#9432;<span class="tooltiptext">Describes the direction of the ST segment slope on an ECG during exercise. Flat or downsloping can be a sign of heart disease.</span></span></label>
+                <select id="slope" name="slope" aria-label="Slope of ST Segment">
+                    <option value="0">Upsloping</option>
+                    <option value="1">Flat</option>
+                    <option value="2">Downsloping</option>
+                </select>
+            </div>
+            <div class="form-section">
+                <label for="ca">Number of Major Vessels Colored <span class="tooltip" tabindex="0">&#9432;<span class="tooltiptext">The number of major blood vessels (0-3) that are visible after a special dye is injected. Higher numbers may indicate healthier arteries.</span></span></label>
+                <select id="ca" name="ca" aria-label="Number of Major Vessels Colored">
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+            <div class="form-section">
+                <label for="thal">Thalassemia Type <span class="tooltip" tabindex="0">&#9432;<span class="tooltiptext">A blood disorder affecting red blood cells. 'Normal' means no disorder, 'Fixed Defect' and 'Reversible Defect' refer to specific types of thalassemia that can impact heart health.</span></span></label>
+                <select id="thal" name="thal" aria-label="Thalassemia Type">
+                    <option value="0">Normal</option>
+                    <option value="1">Fixed Defect</option>
+                    <option value="2">Reversible Defect</option>
+                </select>
+            </div>
+            <button type="submit" class="submit-btn" aria-label="Predict Result">
+                <span id="submit-text">Predict Result</span>
+                <span id="spinner" style="display:none;">⏳</span>
+            </button>
+        </form>
+        <script>
+        // Show spinner on submit
+        document.querySelector('.heart-form').addEventListener('submit', function(e) {
+            document.getElementById('submit-text').style.display = 'none';
+            document.getElementById('spinner').style.display = 'inline-block';
+        });
+        </script>
+    </div>
+</body>
+</html>
